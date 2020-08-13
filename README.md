@@ -13,5 +13,5 @@ QR reader and scanner made in Java for Android.
 * Code Aztec
 * Data Matrix
 
-## :computer: [Play Store](https://play.google.com/store/apps/details?id=com.waniapp.qrcode.scanner.reader.android)
+## :iphone: [Play Store](https://play.google.com/store/apps/details?id=com.waniapp.qrcode.scanner.reader.android)
 
