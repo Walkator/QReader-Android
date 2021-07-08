@@ -15,13 +15,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.webkit.URLUtil;
-
-/*import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;*/
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -36,7 +29,6 @@ public class Qreader extends AppCompatActivity {
     private SurfaceView cameraView;
     private String token = "";
     private String tokenanterior = "";
-    //private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +36,8 @@ public class Qreader extends AppCompatActivity {
         setContentView(R.layout.activity_qreader);
 
         cameraView = (SurfaceView) findViewById(R.id.camera_view);
-        //mAdView = findViewById(R.id.adView);
-
 
         hideSystemUI();
-        //initADS();
         initQR();
     }
 
@@ -64,55 +53,8 @@ public class Qreader extends AppCompatActivity {
     }
 
 
-    /*public void initADS() {
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-            }
-
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-                // Code to be executed when an ad request fails.
-            }
-
-            @Override
-            public void onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-            }
-
-            @Override
-            public void onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-            }
-
-            @Override
-            public void onAdLeftApplication() {
-                // Code to be executed when the user has left the app.
-            }
-
-            @Override
-            public void onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-            }
-        });
-    }*/
-
 
     public void initQR() {
-
-        // creo el detector qr
         BarcodeDetector barcodeDetector =
                 new BarcodeDetector.Builder(this)
                         .setBarcodeFormats(Barcode.ALL_FORMATS)
@@ -121,7 +63,7 @@ public class Qreader extends AppCompatActivity {
         cameraSource = new CameraSource
                 .Builder(this, barcodeDetector)
                 .setRequestedPreviewSize(1080, 720)
-                .setAutoFocusEnabled(true) //you should add this feature
+                .setAutoFocusEnabled(true) 
                 .build();
 
         cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
@@ -169,7 +111,7 @@ public class Qreader extends AppCompatActivity {
                             startActivity(browserIntent);
                         }
                         else {
-                            // comparte en otras apps
+                            // Share in anothers apps
                             Intent shareIntent = new Intent();
                             shareIntent.setAction(Intent.ACTION_SEND);
                             shareIntent.putExtra(Intent.EXTRA_TEXT, token);
